@@ -1,48 +1,39 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
-const db = require("./models");
+var express = require("express");
 
-const PORT = process.env.PORT || 8000;
+var mongoose = require("mongoose");
+
+var logger = require("morgan");
+
+var app = express();
 
 // Configuration
 // ================================================================================================
 
-const app = express();
-app.use(express.urlencoded({ extended: true }));
+var PORT = process.env.PORT || 9000;
+app.use(logger("dev"));
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+);
 app.use(express.json());
-
 app.use(express.static("public"));
 
 // Mongoose/mongodb connection
 // =================================================================================================
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", {
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/workout";
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-});
+  useUnifiedTopology: true,
+  useFindAndModify: false
+}); // HTML & API routes
 
-// HTML & API routes
-require('./routes/htmlRoutes')(app);
-require('./routes/api')(app);
-
-// ===============================================================================================
-
-db.Workout.create({ name: "woDb" })
-  .then(dbWorkouts => {
-    console.log(dbWorkouts);
-  })
-  .catch(({ message }) => {
-    console.log(message);
-  });
+app.use(require("./routes/htmlRoutes"));
+app.use(require("./routes/apiRoutes"));
 
 // listen for PORT | localhost
-app.listen(PORT, err => {
-  if (err) {
-    console.log(err);
-  }
 
-  console.info(`>>> 🌎 Open https://localhost/${PORT} in browser.`);
+app.listen(PORT, function() {
+  console.log("  App running on port " + PORT + "!");
 });
-module.exports = app;

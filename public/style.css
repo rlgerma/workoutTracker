@@ -1,47 +1,24 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap");
 
-html,
-body,
-.wrapper {
-  height: 100%;
+html {
+  padding: 0;
+  margin: 0;
+  font-family: "Poppins", sans-serif !important;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Poppins", sans-serif !important;
+  background-image: url(https://cdn.cp.adobe.io/content/2/dcx/26483a77-9ac5-46d4-8490-d9afe44c01d4/rendition/preview.jpg/version/0/format/jpg/dimension/width/size/1200);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-blend-mode: multiply;
 }
 
-nav {
-  background-color: #5793fd;
-  color: #ffffff;
-  height: 80px;
-  padding: 10px;
-  line-height: 3;
-  font-size: 1.2rem;
-}
-
-a,
-a:hover,
-a:active,
-a:visited {
-  text-decoration: none;
-  color: inherit;
-}
-
-header {
-  height: 150px;
-  padding-top: 80px;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-header h1 {
-  transform: skewX(-2deg);
+section {
+  height: 100vh;
+  width: 100%;
 }
 
 select {
@@ -82,6 +59,53 @@ select option {
   width: 100%;
 }
 
+h1 {
+  text-align: left;
+  color: #ff9a04;
+}
+
+.flexbox {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.centerItems {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+nav {
+  text-align: end;
+  color: #FFA800;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background-color: #222;
+  margin-bottom: 10%;
+}
+
+nav:hover {
+  color: #d3891b;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  background-color: #222;
+}
+
+a {
+  color: #FFA800;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+a:hover {
+  color: #d3891b;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
 input {
   display: block;
   -moz-appearance: none;
@@ -95,8 +119,17 @@ input {
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
+.inputBox {
+  width: 100%;
+  background-color: #673ab7;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  text-decoration-color: white;
+  color: white;
+}
+
 .wrapper {
-  background-color: #f2f8ff;
   padding-bottom: 100px;
 }
 
@@ -118,7 +151,7 @@ form label {
   margin-top: 0.7rem;
 }
 
-form > button {
+form>button {
   float: right;
   margin-top: 20px;
 }
@@ -178,8 +211,8 @@ button {
 #toast.success {
   opacity: 1;
   right: 10px;
-  background-color: hsl(94, 40%, 86%);
-  color: hsl(94, 90%, 16%);
+  background-color: hsl(90, 8%, 14%);
+  color: hsl(59, 86%, 67%);
   transition: all 1.2s;
 }
 
@@ -195,7 +228,7 @@ form label {
   margin-top: 0.7rem;
 }
 
-form > button {
+form>button {
   float: right;
   margin-top: 20px;
 }
@@ -244,6 +277,7 @@ button {
   color: hsl(94, 90%, 16%);
   transition: all 0.5s;
 }
+
 .workout-type,
 form .cardio-form div,
 form .resistance-form div {
@@ -256,7 +290,7 @@ form label {
   margin-top: 0.7rem;
 }
 
-form > button {
+form>button {
   float: right;
   margin-top: 20px;
 }
@@ -322,7 +356,7 @@ button {
   background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 
-form > button {
+form>button {
   margin: 5px;
   margin-top: 20px;
 }
@@ -382,6 +416,8 @@ form > button {
 
 .mt {
   margin-top: 20px;
+  background: linear-gradient(to bottom, #e7e18f 0%, #d3891b 100%);
+  border-radius: 24px;
 }
 
 .workout .ui.card {
@@ -430,8 +466,21 @@ form > button {
     opacity: 1;
     right: 10px;
   }
+
   100% {
     opacity: 0;
     right: -320px;
   }
+}
+
+textarea:focus {
+  animation: none !important;
+}
+
+footer {
+  color: #b9a4de;
+}
+
+footer a {
+  color: white;
 }

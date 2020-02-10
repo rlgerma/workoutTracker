@@ -1,33 +1,32 @@
-const workoutTypeSelect = document.querySelector("#type");
-const cardioForm = document.querySelector(".cardio-form");
-const resistanceForm = document.querySelector(".resistance-form");
-const cardioNameInput = document.querySelector("#cardio-name");
-const nameInput = document.querySelector("#name");
-const weightInput = document.querySelector("#weight");
-const setsInput = document.querySelector("#sets");
-const repsInput = document.querySelector("#reps");
-const durationInput = document.querySelector("#duration");
-const resistanceDurationInput = document.querySelector("#resistance-duration");
-const distanceInput = document.querySelector("#distance");
-const completeButton = document.querySelector("button.complete");
-const addButton = document.querySelector("button.add-another");
-const toast = document.querySelector("#toast");
-const newWorkout = document.querySelector(".new-workout")
-
-let workoutType = null;
-let shouldNavigateAway = false;
+var workoutTypeSelect = document.querySelector("#type");
+var cardioForm = document.querySelector(".cardio-form");
+var resistanceForm = document.querySelector(".resistance-form");
+var cardioNameInput = document.querySelector("#cardio-name");
+var nameInput = document.querySelector("#name");
+var weightInput = document.querySelector("#weight");
+var setsInput = document.querySelector("#sets");
+var repsInput = document.querySelector("#reps");
+var durationInput = document.querySelector("#duration");
+var resistanceDurationInput = document.querySelector("#resistance-duration");
+var distanceInput = document.querySelector("#distance");
+var completeButton = document.querySelector("button.complete");
+var addButton = document.querySelector("button.add-another");
+var toast = document.querySelector("#toast");
+var newWorkout = document.querySelector(".new-workout");
+var workoutType = null;
+var shouldNavigateAway = false;
 
 async function initExercise() {
-  let workout;
+  var workout;
 
   if (location.search.split("=")[1] === undefined) {
-    workout = await API.createWorkout()
-    console.log(workout)
+    workout = await API.createWorkout();
+    console.log(workout);
   }
+
   if (workout) {
     location.search = "?id=" + workout._id;
   }
-
 }
 
 initExercise();
@@ -50,7 +49,7 @@ function handleWorkoutTypeChange(event) {
 }
 
 function validateInputs() {
-  let isValid = true;
+  var isValid = true;
 
   if (workoutType === "resistance") {
     if (nameInput.value.trim() === "") {
@@ -97,8 +96,7 @@ function validateInputs() {
 
 async function handleFormSubmit(event) {
   event.preventDefault();
-
-  let workoutData = {};
+  var workoutData = {};
 
   if (workoutType === "cardio") {
     workoutData.type = "cardio";
@@ -121,6 +119,7 @@ async function handleFormSubmit(event) {
 
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
+
   if (shouldNavigateAway) {
     location.href = "/";
   }
@@ -140,17 +139,19 @@ function clearInputs() {
 if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }
+
 if (completeButton) {
-  completeButton.addEventListener("click", function (event) {
+  completeButton.addEventListener("click", function(event) {
     shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
+
 if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
-toast.addEventListener("animationend", handleToastAnimationEnd);
 
-document
-  .querySelectorAll("input")
-  .forEach(element => element.addEventListener("input", validateInputs));
+toast.addEventListener("animationend", handleToastAnimationEnd);
+document.querySelectorAll("input").forEach(function(element) {
+  return element.addEventListener("input", validateInputs);
+});
